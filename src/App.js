@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import PrimaryButton from './components/Button.js';
+import ModalTask from './components/Modal.js';
+
+
+
+// import { Space, Layout, Typography } from 'antd';
 
 function App() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () =>{
+    setIsModalOpen(true);
+  };
+  const onClose = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <>
+     {/* <Title level={2}>TodoList App</Title>  */}
+    <PrimaryButton onClick={showModal}/>
+
+    <ModalTask open={isModalOpen} onCancel={handleCancel} onClick={onClose}/>
+  </>
   );
 }
 
